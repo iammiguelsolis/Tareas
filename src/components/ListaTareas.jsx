@@ -27,7 +27,7 @@ export const ListaTareas = () => {
   return (
     <div className="bg-gray-200 p-6 min-h-screen grid place-content-center">
       <div className="bg-white p-6 rounded shadow-md w-full max-w-lg">
-        <h1 className="text-2xl font-bold mb-4 text-center">Lista de tareas</h1>
+        <h1 className="text-2xl font-bold mb-4 text-center">Lista de tareas Actualizado</h1>
 
         <form onSubmit={handleSubmit} className="flex gap-2 mb-6">
           <input
