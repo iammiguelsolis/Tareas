@@ -4,9 +4,11 @@ export const ListaTareas = () => {
   const inputRef = useRef();
   const [task, setTask] = useState([]);
 
+  const API_URL = 'https://backend-tan-three.vercel.app/api/notes';
+
   // Cargar tareas al iniciar
   useEffect(() => {
-    fetch('http://localhost:3001/api/notes')
+    fetch(API_URL)
       .then(res => res.json())
       .then(data => {
         const tareas = data.map(note => ({
@@ -27,7 +29,7 @@ export const ListaTareas = () => {
       important: false
     };
 
-    fetch('http://localhost:3001/api/notes', {
+    fetch(API_URL, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -42,7 +44,7 @@ export const ListaTareas = () => {
   };
 
   const eliminarTarea = (id) => {
-    fetch(`http://localhost:3001/api/notes/${id}`, {
+    fetch(`${API_URL}/${id}`, {
       method: 'DELETE'
     }).then(() => {
       setTask(task.filter(t => t.id !== id));
