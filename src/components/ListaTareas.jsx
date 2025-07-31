@@ -1,28 +1,53 @@
-import { useReducer, useRef } from 'react';
-import { initState, toDOReducer } from '../components/LogicaReducer';
+import { useState, useEffect, useRef } from 'react';
 
 export const ListaTareas = () => {
-  
   const inputRef = useRef();
+  const [task, setTask] = useState([]);
 
-  const [task, dispatch] = useReducer(toDOReducer, initState);
-
+  // Cargar tareas al iniciar
+  useEffect(() => {
+    fetch('http://localhost:3001/api/notes')
+      .then(res => res.json())
+      .then(data => {
+        const tareas = data.map(note => ({
+          id: note.id,
+          text: note.content
+        }));
+        setTask(tareas);
+      });
+  }, []);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     const valor = inputRef.current.value.trim();
     if (valor === '') return;
 
-    const newTodo = {
-      id: new Date().getTime(),
-      text: valor,
-      done: false
+    const nuevaTarea = {
+      content: valor,
+      important: false
     };
 
-    dispatch({ type: 'add', payload: newTodo });
-    inputRef.current.value = '';
+    fetch('http://localhost:3001/api/notes', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(nuevaTarea)
+    })
+      .then(res => res.json())
+      .then(data => {
+        setTask([...task, { id: data.id, text: data.content }]);
+        inputRef.current.value = '';
+      });
   };
 
+  const eliminarTarea = (id) => {
+    fetch(`http://localhost:3001/api/notes/${id}`, {
+      method: 'DELETE'
+    }).then(() => {
+      setTask(task.filter(t => t.id !== id));
+    });
+  };
 
   return (
     <div className="bg-gray-200 p-6 min-h-screen grid place-content-center">
@@ -51,34 +76,14 @@ export const ListaTareas = () => {
             task.map((tarea) => (
               <li
                 key={tarea.id}
-                className="grid grid-cols-[2fr_1fr_1fr] items-center gap-2 p-2 border rounded bg-gray-100"
+                className="grid grid-cols-[3fr_1fr] items-center gap-2 p-2 border rounded bg-gray-100"
               >
-                <span
-                  className={`${
-                    tarea.done ? 'line-through text-gray-500' : ''
-                  }`}
-                >
-                  {tarea.text}
-                </span>
+                <span>{tarea.text}</span>
                 <button
-                  onClick={() =>
-                    dispatch({ type: 'remove', payload: tarea.id })
-                  }
-                  className="bg-red-500 text-white py-1 rounded hover:bg-red-600 cursor-pointer"
+                  onClick={() => eliminarTarea(tarea.id)}
+                  className="bg-red-500 text-white py-1 px-2 rounded hover:bg-red-600"
                 >
                   Eliminar
-                </button>
-                <button
-                  onClick={() =>
-                    dispatch({ type: 'completed', payload: tarea.id })
-                  }
-                  className={`py-1 rounded ${
-                    tarea.done
-                      ? 'bg-yellow-500 hover:bg-yellow-600'
-                      : 'bg-green-500 hover:bg-green-600'
-                  } text-white cursor-pointer px-2`}
-                >
-                  {tarea.done ? 'Deshacer' : 'Completar'}
                 </button>
               </li>
             ))
