@@ -1,12 +1,65 @@
-# React + Vite
+# Lista de Tareas - React + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Aplicación simple de lista de tareas (ToDo) construida con React, Vite y TailwindCSS. Permite agregar y eliminar tareas, conectándose a una API externa para almacenar los datos.
 
-Currently, two official plugins are available:
+## Características
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- Añadir nuevas tareas.
+- Eliminar tareas existentes.
+- Persistencia de tareas usando una API REST.
+- Estilos modernos con TailwindCSS.
 
-## Expanding the ESLint configuration
+## Instalación
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+1. Clona el repositorio:
+   ```sh
+   git clone <URL-del-repo>
+   cd Tareas
+   ```
+
+2. Instala las dependencias:
+   ```sh
+   npm install
+   ```
+
+3. Inicia el servidor de desarrollo:
+   ```sh
+   npm run dev
+   ```
+
+4. Abre [http://localhost:5173](http://localhost:5173) en tu navegador.
+
+## Estructura del proyecto
+
+```
+src/
+  App.jsx
+  main.jsx
+  index.css
+  components/
+    ListaTareas.jsx
+public/
+  vite.svg
+```
+
+## Scripts
+
+- `npm run dev` — Inicia el servidor de desarrollo.
+- `npm run build` — Genera la versión de producción.
+- `npm run preview` — Previsualiza la versión de producción.
+- `npm run lint` — Ejecuta ESLint.
+
+## Dependencias principales
+
+- [React](https://react.dev/)
+- [Vite](https://vitejs.dev/)
+- [TailwindCSS](https://tailwindcss.com/)
+
+## API
+
+La aplicación utiliza la API pública en:  
+`https://backend-tan-three.vercel.app/api/notes`
+
+## Licencia
+
+MIT
