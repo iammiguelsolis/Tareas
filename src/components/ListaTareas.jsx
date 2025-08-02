@@ -81,7 +81,7 @@ export const ListaTareas = () => {
                 className="grid grid-cols-[3fr_1fr] items-center gap-2 p-2 border rounded bg-gray-100"
               >
                 <span className="break-words whitespace-pre-wrap overflow-hidden break-all w-full">
-                  {tarea.text.split(' ').slice(0, 60).join(' ')}{tarea.text.split(' ').length > 60 ? '...' : ''}
+                  {tarea.text.length > 60 ? tarea.text.slice(0, 60) + '...' : tarea.text}
                 </span>
 
                 <button
