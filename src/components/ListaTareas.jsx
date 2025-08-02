@@ -80,7 +80,10 @@ export const ListaTareas = () => {
                 key={tarea.id}
                 className="grid grid-cols-[3fr_1fr] items-center gap-2 p-2 border rounded bg-gray-100"
               >
-                <span className="break-words whitespace-pre-wrap overflow-hidden break-all w-full">{tarea.text}</span>
+                <span className="break-words whitespace-pre-wrap overflow-hidden break-all w-full">
+                  {tarea.text.split(' ').slice(0, 60).join(' ')}{tarea.text.split(' ').length > 60 ? '...' : ''}
+                </span>
+
                 <button
                   onClick={() => eliminarTarea(tarea.id)}
                   className="bg-red-500 text-white py-1 px-2 rounded hover:bg-red-600"
