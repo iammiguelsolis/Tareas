@@ -12,7 +12,7 @@ export const ListaTareas = () => {
       .then(res => res.json())
       .then(data => {
         const tareas = data.map(note => ({
-          id: note.id,
+          id: note._id,
           text: note.content
         }));
         setTask(tareas);
@@ -38,7 +38,7 @@ export const ListaTareas = () => {
     })
       .then(res => res.json())
       .then(data => {
-        setTask([...task, { id: data.id, text: data.content }]);
+        setTask([...task, { id: data._id, text: data.content }]);
         inputRef.current.value = '';
       });
   };
