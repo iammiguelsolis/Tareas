@@ -13,7 +13,7 @@ Aplicación simple de lista de tareas (ToDo) construida con React, Vite y Tailwi
 
 1. Clona el repositorio:
    ```sh
-   git clone <URL-del-repo>
+   git clone https://github.com/iammiguelsolis/Tareas
    cd Tareas
    ```
 
