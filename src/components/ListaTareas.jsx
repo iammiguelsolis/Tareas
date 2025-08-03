@@ -65,7 +65,7 @@ export const ListaTareas = () => {
           />
           <button
             type="submit"
-            className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition"
+            className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition cursor-pointer"
           >
             Agregar
           </button>
@@ -78,7 +78,7 @@ export const ListaTareas = () => {
             task.map((tarea) => (
               <li
                 key={tarea.id}
-                className="grid grid-cols-[3fr_1fr] items-center gap-2 p-2 border rounded bg-gray-100"
+                className="grid grid-cols-[3fr_1fr] items-center gap-2 p-2 border rounded bg-gray-100 scale-95 hover:scale-100 transition"
               >
                 <span className="break-words whitespace-pre-wrap overflow-hidden break-all w-full">
                   {tarea.text.length > 60 ? tarea.text.slice(0, 60) + '...' : tarea.text}
@@ -86,7 +86,7 @@ export const ListaTareas = () => {
 
                 <button
                   onClick={() => eliminarTarea(tarea.id)}
-                  className="bg-red-500 text-white py-1 px-2 rounded hover:bg-red-600"
+                  className="bg-red-500 text-white py-1 px-2 rounded hover:bg-red-600 cursor-pointer"
                 >
                   Eliminar
                 </button>
